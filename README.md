@@ -66,7 +66,7 @@ Toku Messages is a messaging service that provides CRUD operations for messages 
 
 ## Setup and Deployment
 
-### Local Setup
+### Local Setup without Docker
 
 1. Ensure Node.js and MongoDB are installed.
 2. Clone the repository and navigate to the project directory.
@@ -75,14 +75,14 @@ Toku Messages is a messaging service that provides CRUD operations for messages 
 4. Compile TypeScript to JavaScript: `npm run build`.
 5. Start the application: `npm start`.
 
-
 ### Using Docker
 
 1. Check `docker-compose.yml` for the configuration details.
 1. Run the application using Docker Compose: `docker-compose up`.
 
-Application will be available at `http://localhost:3000`. (Default port is 3000, can be changed in `docker-compose.yml`)
 
+- Application will be available at `http://localhost:3000`. (Default port is 3000, can be changed in `docker-compose.yml`)
+- Mongodb will be available at `localhost:28000` outside the container. (Default port is 28000, can be changed in `docker-compose.yml`)
 
 ## API Documentation
 
