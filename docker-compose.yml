@@ -18,5 +18,7 @@ services:
       - mongo-toku
     environment:
       DB_HOST: mongo-toku:27017 
+      PORT: 3000
+      NODE_ENV: development
 volumes:
   mongodata:
