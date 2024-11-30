@@ -59,11 +59,11 @@ ChatSchema.static('createChat', async function(participants: mongoose.Types.Obje
 });
 
 ChatSchema.static('getChatDetails', async function (chatId: mongoose.Types.ObjectId, userId: mongoose.Types.ObjectId): Promise<IChat | Boolean> {
-    const chat = await this.findOne({ _id: chatId, participants: userId  }).populate('participants', 'username');;
+    const chat = await this.findOne({ _id: chatId, participants: userId  }).populate('participants', 'username').lean();
     if (!chat) {
         return false;
     }
-    return chat
+    return chat;
 });
 
 

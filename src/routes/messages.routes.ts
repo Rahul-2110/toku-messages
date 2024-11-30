@@ -35,12 +35,19 @@ router.get("/:messageId", async (req: Request, res: Response) => {
         const { messageId } = req.params;
         const user_id = req.user._id;
 
-        const message = await Message.findById(messageId).populate('sender_id', 'username');;
+        const message = await Message.findById(messageId).populate('sender_id', 'username');
 
         if (!message) return res.status(404).json({ error: "Message not found" });
+
         let chat = await Chat.chechUserInChat(new mongoose.Types.ObjectId(user_id), message.chat_id);
+
         if (!chat) return res.status(404).json({ error: "Message not found" });
 
+        if (message.status == 'delivered' && message.sender_id !== user_id) {
+            message.status = "read";
+            await message.save();
+        }
+        
         res.json(message);
     } catch (error) {
         console.error(error);
@@ -76,7 +83,7 @@ router.patch(
             }
 
             res.json({ message: "Message status updated successfully" });
-            
+
         } catch (error) {
             console.error(error);
             res.status(500).json(error);

@@ -49,8 +49,12 @@ router.get('/:chatId', async (req: Request, res: Response) => {
         const { chatId } = req.params;
         const user_id = req.user._id;
         const chat = await Chat.getChatDetails(new mongoose.Types.ObjectId(chatId), user_id);
+        
         if (!chat) return res.status(404).json({ error: "Chat not found" });
-        res.json(chat);
+
+        let messagesCount = await Message.countDocuments({ chat_id: chatId });
+
+        res.json({...chat, total_messages: messagesCount});
     } catch (error) {
         console.error(error);
         res.status(500).json(error);
