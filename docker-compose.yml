@@ -1,5 +1,12 @@
 version: '3.8'
 services:
+  mongo-toku:
+    container_name: mongodb-toku
+    image: mongo:4.4.29
+    ports:
+      - "28000:27017"
+    volumes:
+      - mongodata:/data/db1
   app:
     container_name: myapp
     build: 
@@ -8,17 +15,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - mongo
+      - mongo-toku
     environment:
-      DB_HOST: mongo:27017
-
-  mongo:
-    container_name: mongodb
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodata:/data/db
-
+      DB_HOST: mongo-toku:27017 
 volumes:
   mongodata:

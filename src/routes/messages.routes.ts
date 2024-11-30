@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import Message from "../db/models/message";
-import { sendMessageToQueue } from "../utils/kafka/producer";
+// import { sendMessageToQueue } from "../utils/kafka/producer";
 import validateRequest from "../utils/validator/request";
 import Chat from "../db/models/chat";
 import mongoose from "mongoose";
@@ -56,19 +56,27 @@ router.patch(
             const { messageId } = req.params;
             const { status } = req.body;
 
-            const validStatuses = ["delivered", "read", "failed"];
+            const validStatuses = ["delivered", "read"];
             if (!validStatuses.includes(status)) {
                 return res.status(400).json({ error: "Invalid status" });
             }
 
-            const message = await Message.findByIdAndUpdate(
-                messageId,
-                { status },
-                { new: true }
-            ).populate('sender_id', 'username');;
+            let message = await Message.findById(messageId);
 
             if (!message) return res.status(404).json({ error: "Message not found" });
-            res.json(message);
+
+            let chat = await Chat.chechUserInChat(new mongoose.Types.ObjectId(req.user._id), message.chat_id);
+
+            if (!chat) return res.status(404).json({ error: "Message not found" });
+
+
+            if (message.status !== status && status === "delivered") {
+                message.status = "read";
+                await message.save();
+            }
+
+            res.json({ message: "Message status updated successfully" });
+            
         } catch (error) {
             console.error(error);
             res.status(500).json(error);

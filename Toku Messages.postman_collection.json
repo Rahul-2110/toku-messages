@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "1198648d-853d-4a65-9ab9-0738f7596bfe",
+		"name": "Toku Messages",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18671452"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"passworduser1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Chat",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMjk4Nzk5NCwiZXhwIjoxNzMyOTkxNTk0fQ.mIGWDATP1JN2rDgfbi8GUzKpLikOdeqxKFbS33XMI7I",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"participant\": \"user2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/chat/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"chat",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMjk4Nzk5NCwiZXhwIjoxNzMyOTkxNTk0fQ.mIGWDATP1JN2rDgfbi8GUzKpLikOdeqxKFbS33XMI7I",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"chat_id\": \"674b296348489ba09e809743\",\n    \"content\": \"hellooo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Chat History",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMjk4Nzk5NCwiZXhwIjoxNzMyOTkxNTk0fQ.mIGWDATP1JN2rDgfbi8GUzKpLikOdeqxKFbS33XMI7I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/chat/674b296348489ba09e809743/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"chat",
+						"674b296348489ba09e809743",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chat Details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMjk4Nzk5NCwiZXhwIjoxNzMyOTkxNTk0fQ.mIGWDATP1JN2rDgfbi8GUzKpLikOdeqxKFbS33XMI7I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/chat/674b296348489ba09e809743",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"chat",
+						"674b296348489ba09e809743"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chat List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMjk4Nzk5NCwiZXhwIjoxNzMyOTkxNTk0fQ.mIGWDATP1JN2rDgfbi8GUzKpLikOdeqxKFbS33XMI7I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/chat/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"chat",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

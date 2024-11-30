@@ -5,7 +5,7 @@ import Message from '../db/models/message';
 import mongoose from "mongoose";
 import { startChatSchema } from '../utils/validator/chat';
 import validateRequest from '../utils/validator/request';
-import { updateChatStatusStatus } from '../utils/kafka/producer';
+// import { updateChatStatusStatus } from '../utils/kafka/producer';
 
 const router = express.Router();
 
