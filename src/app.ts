@@ -20,17 +20,10 @@ const app = express();
 
 
 app.use(bodyParser.json());
-app.use(ipRateLimiter); 
-
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(ipRateLimiter);  // Rate limit requests from the same IP address
 
 
 app.use('/api/v1/', authRoutes);
-
-
 
 app.use('/api/v1/chat', authenticateToken, chatRoutes);
 app.use('/api/v1/message', authenticateToken, messagesRoutes);

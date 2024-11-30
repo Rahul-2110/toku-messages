@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"passworduser1\"\n}",
+					"raw": "{\n    \"username\": \"rahul\",\n    \"password\": \"test\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,7 +116,7 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMjk4Nzk5NCwiZXhwIjoxNzMyOTkxNTk0fQ.mIGWDATP1JN2rDgfbi8GUzKpLikOdeqxKFbS33XMI7I",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMzAwMTEyNSwiZXhwIjoxNzMzMDA0NzI1fQ.Mp2d1kOGuhOdxQV0SJnSYQmIhAOFwJMqKTmyIh-CLzU",
 						"type": "text"
 					}
 				],
@@ -141,11 +141,14 @@
 		{
 			"name": "Chat Details",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMjk4Nzk5NCwiZXhwIjoxNzMyOTkxNTk0fQ.mIGWDATP1JN2rDgfbi8GUzKpLikOdeqxKFbS33XMI7I",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMzAwMTEyNSwiZXhwIjoxNzMzMDA0NzI1fQ.Mp2d1kOGuhOdxQV0SJnSYQmIhAOFwJMqKTmyIh-CLzU",
 						"type": "text"
 					}
 				],
@@ -189,6 +192,102 @@
 						"v1",
 						"chat",
 						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Message Details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMzAwMTEyNSwiZXhwIjoxNzMzMDA0NzI1fQ.Mp2d1kOGuhOdxQV0SJnSYQmIhAOFwJMqKTmyIh-CLzU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/message/674b4cb2ea007e933b0988d9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"message",
+						"674b4cb2ea007e933b0988d9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Message Status",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGFmOWZmZTYzNDI5M2I5Mzg4YmYwZSIsImlhdCI6MTczMzAwMTEyNSwiZXhwIjoxNzMzMDA0NzI1fQ.Mp2d1kOGuhOdxQV0SJnSYQmIhAOFwJMqKTmyIh-CLzU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"read\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/message/674b4cb2ea007e933b0988d9/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"message",
+						"674b4cb2ea007e933b0988d9",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"rahul\",\n    \"password\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"register"
 					]
 				}
 			},
