@@ -43,7 +43,8 @@ router.get("/:messageId", async (req: Request, res: Response) => {
 
         if (!chat) return res.status(404).json({ error: "Message not found" });
 
-        if (message.status == 'delivered' && message.sender_id !== user_id) {
+        if (message.status == 'delivered' && message.sender_id._id.toString() !== user_id.toString()) {
+        
             message.status = "read";
             await message.save();
         }
@@ -63,7 +64,7 @@ router.patch(
             const { messageId } = req.params;
             const { status } = req.body;
 
-            const validStatuses = ["delivered", "read"];
+            const validStatuses = ["read"];
             if (!validStatuses.includes(status)) {
                 return res.status(400).json({ error: "Invalid status" });
             }
@@ -72,12 +73,16 @@ router.patch(
 
             if (!message) return res.status(404).json({ error: "Message not found" });
 
+            if (message.sender_id.toString() === req.user._id.toString()) {
+                return res.status(403).json({ error: "You are not authorized to update this message" });
+            }
+
             let chat = await Chat.chechUserInChat(new mongoose.Types.ObjectId(req.user._id), message.chat_id);
 
             if (!chat) return res.status(404).json({ error: "Message not found" });
 
 
-            if (message.status !== status && status === "delivered") {
+            if (message.status === "delivered" && status === "read") {  // Only update status if it's delivered to read for now
                 message.status = "read";
                 await message.save();
             }

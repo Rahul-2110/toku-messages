@@ -50,7 +50,7 @@ messageSchema.static('updateMessageStatus', async function (messageId: mongoose.
 
 
 messageSchema.static('updateChatStatus', async function (chatId: mongoose.Types.ObjectId, userId: mongoose.Types.ObjectId, status: string): Promise<IChat> {
-    const messages = await this.updateMany({ chat_id: chatId, sender_id: { $not: { $eq: userId } } }, { status }, { new: true }).populate('sender_id', 'username');;
+    const messages = await this.updateMany({ chat_id: chatId, sender_id: { $not: { $eq: userId } } }, { status }, { new: true }).populate('sender_id', 'username');
     return messages;
 });
 
